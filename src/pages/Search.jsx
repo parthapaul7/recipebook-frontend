@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
-import Card from "../components/Card"
+import Searchbar from '../components/SearchBar'
+import Card from '../components/Card'
 const url = import.meta.env.VITE_API_URL
 
 const Recipies = () => {
@@ -15,9 +16,10 @@ const Recipies = () => {
   
   return (
     <div>
-      {recipes.map((e,i)=>(
-        <Card key={i} image={e.image} title={e.title} description={e.description}/> 
-    ))}
+      <Searchbar />
+      {recipes.map((e,i)=>{
+        if(i<3) return <Card key={i} image={e.image} title={e.title} description={e.description}/>
+      })}
     </div>
   )
 }
