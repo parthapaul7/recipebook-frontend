@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import {Link} from "react-router-dom"
 export default function ImgMediaCard(props) {
   return (
     <Card sx={{ maxWidth: 700, margin:"2rem auto"}}>
@@ -24,7 +25,9 @@ export default function ImgMediaCard(props) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
+        <Link to={"/recipes/"+props.id}>
         <Button size="small">Learn More</Button>
+        </Link >  
       </CardActions>
     </Card>
   );

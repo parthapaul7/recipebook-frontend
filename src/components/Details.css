@@ -1,0 +1,15 @@
+img{
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    img {
+        width: 100%;
+    }
+    h1{
+        font-size: 18px;
+    }
+}
+    

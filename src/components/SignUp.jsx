@@ -12,14 +12,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-export default function Signup() {
+export default function Signup({signup}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+     const details = {
+      name:data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+      confirmPassword: data.get('confirmPassword')
+    };
+
+    if(details.password === details.confirmPassword){
+      signup(details);
+      return
+    }
+    console.log(details);
+    alert("password did not match")
   };
 
   return (
@@ -47,7 +56,7 @@ export default function Signup() {
               fullWidth
               id="name"
               label="Name"
-              name="Name"
+              name="name"
               autoComplete="Name"
               autoFocus
             />
@@ -74,10 +83,10 @@ export default function Signup() {
               margin="normal"
               required
               fullWidth
-              name="confirm password"
+              name="confirmPassword"
               label="confirm Password"
               type="password"
-              id="password"
+              id="confirmPassword"
               autoComplete="current-password"
             />
             <Button

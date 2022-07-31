@@ -28,14 +28,15 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function LogIn() {
-  const handleSubmit = (event) => {
+export default function LogIn({login}) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const details = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    await login(details);
   };
 
   return (

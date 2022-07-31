@@ -4,7 +4,7 @@ import "./SearchBar.css";
 
 import { debounce } from "../utils/index.js";
 
-const Searchbar = () => {
+const Searchbar = ({fetchData}) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -14,6 +14,7 @@ const Searchbar = () => {
   }, [search])
   
   function handleSearch() {
+    fetchData(search);
     console.log(search);
   }
 
@@ -24,6 +25,7 @@ const Searchbar = () => {
         onChange={(e) => {
           setSearch(e.target.value);
         }}
+        fontSize="large"
         fullWidth
         variant="outlined"
         placeholder="Search Recipe"
