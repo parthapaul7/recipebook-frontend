@@ -37,7 +37,7 @@ const Recipies = () => {
   }
 
   return (
-    <div>
+  <div style={{padding:"1rem"}}>
       <Searchbar fetchData={fetchDta} />
       <h1 style={{ textAlign: "center" }}>{messege}</h1>
       {loading && <h2 style={{ textAlign: "center" }}>Loading.... </h2>}

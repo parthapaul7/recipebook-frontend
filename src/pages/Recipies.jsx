@@ -20,10 +20,9 @@ const Recipies = () => {
   }, []);
 
   return (
-    <>
-      <div>
+  <div style={{padding:"1rem"}}>
         {loading && <h2 style={{textAlign:"center", marginTop:"5rem"}}>Loading Recipes.... </h2>}
-        {recipes.map((e, i) => (
+        {recipes?.map((e, i) => (
           <Card
             key={i}
             image={e.image}
@@ -33,7 +32,6 @@ const Recipies = () => {
           />
         ))}
       </div>
-    </>
   );
 };
 
