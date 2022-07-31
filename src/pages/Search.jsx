@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Searchbar from "../components/SearchBar";
 import Card from "../components/Card";
-const url = import.meta.env.VIT_API_URL;
+
+const url = import.meta.env.VITE_API_URL;
 
 const Recipies = () => {
   const [recipes, setRecipes] = useState([]);
@@ -14,7 +15,7 @@ const Recipies = () => {
       setLoading(true);
       try {
         const data = (
-          await axios.post(url+"recipes/search", {
+          await axios.post(url + "recipes/search", {
             search,
           })
         ).data;
@@ -40,7 +41,7 @@ const Recipies = () => {
       <Searchbar fetchData={fetchDta} />
       <h1 style={{ textAlign: "center" }}>{messege}</h1>
       {loading && <h2 style={{ textAlign: "center" }}>Loading.... </h2>}
-      {recipes.map((e, i) => {
+      {recipes?.map((e, i) => {
         return (
           <Card
             key={i}

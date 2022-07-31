@@ -7,7 +7,7 @@ const Signup = () => {
   async function signup(data) {
     try {
       const response = await axios.post(url + "users/signup", data);
-        localStorage.setItem("token", JSON.stringify(response?.data[0] || "token"));
+        localStorage.setItem("token", JSON.stringify(response?.data?.[0] || "token"));
         window.location.href = "/";
         return response.data;
     } catch (error) {
