@@ -1,0 +1,28 @@
+.container{
+    margin: auto;
+    margin-top: 2rem;
+    max-width: 600px;
+}
+
+.caution{
+    color: #f44336;
+}
+.step{
+    margin: 0;
+    margin-bottom: 20px;
+    display: flex; 
+    padding: 2px;
+}
+.step textarea{
+    width: 450px
+}
+
+@media screen and (max-width: 768px) {
+    .step{
+        margin: 20px 0;
+    }
+    .step textarea{
+        width: 230px;
+    }
+}
+    

@@ -42,6 +42,7 @@ const Create = () => {
   }
   return( 
   <div style={{padding:"1rem"}}>
+    <h1 style={{textAlign:"center"}}>Create Your Own  Recipe</h1>
   <CreateForm uploadImage={uploadImage} uploadRecipeDetail={uploadRecipeDetail} uploadFullRecipe={uploadFullRecipe} />;
   </div>
   ) 

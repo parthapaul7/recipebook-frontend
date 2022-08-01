@@ -6,31 +6,35 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
+import "./Form.css";
 
 const CreateForm = ({ uploadImage, uploadRecipeDetail, uploadFullRecipe }) => {
   const [steps, setSteps] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    image:
+      "https://cdn.loveandlemons.com/wp-content/uploads/2021/05/fluffy-scrambled-eggs-798x1024.jpga",
+  });
   const [uploadStatus, setUploadStatus] = useState("No file selected");
   const [formSteps, setFormSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState({});
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("handle submit");
+    console.log(formData, formData.image);
     const detialsData = {
       title: formData.title,
       steps: formSteps,
     };
     let id;
     try {
-       id = (await uploadRecipeDetail(detialsData))._id;
+      id = (await uploadRecipeDetail(detialsData))._id;
     } catch (error) {
-      alert(error)
+      alert(error);
       return;
     }
     const fullData = {
       ...formData,
-      expanded:id,
+      expanded: id,
       author: JSON.parse(localStorage.getItem("token"))._id,
     };
     try {
@@ -38,7 +42,7 @@ const CreateForm = ({ uploadImage, uploadRecipeDetail, uploadFullRecipe }) => {
       console.log(data);
       alert("Recipe uploaded successfully");
     } catch (error) {
-      alert(error)
+      alert(error);
       return;
     }
   }
@@ -72,7 +76,7 @@ const CreateForm = ({ uploadImage, uploadRecipeDetail, uploadFullRecipe }) => {
   }
 
   return (
-    <div className="outer">
+    <div className="container">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <TextField
           fullWidth
@@ -98,7 +102,6 @@ const CreateForm = ({ uploadImage, uploadRecipeDetail, uploadFullRecipe }) => {
           Upload Full Image
           <input
             hidden
-            required
             accept="image/*"
             name="mainImage"
             onChange={handleImage}
@@ -108,8 +111,8 @@ const CreateForm = ({ uploadImage, uploadRecipeDetail, uploadFullRecipe }) => {
         {uploadStatus}
         <div>
           <h3>Steps to the recipe</h3>
-          <p>
-            caution: You can not edit the field after adding next step , refresh
+          <p className="caution">
+            Caution: You can not edit the field after adding next step , refresh
             to resubmit
           </p>
           {Array.from({ length: steps }, (_, i) => (
@@ -177,32 +180,32 @@ function Step({
   }
 
   return (
-    <div style={{display:"flex"}}>
+    <div className="step">
       <TextareaAutosize
         aria-label="empty textarea"
         placeholder="Empty"
-        style={{ width: 450 }}
         minRows={3}
         disabled={index < steps - 1}
         name="description"
         onChange={handleChange}
       />
-      <IconButton
-        style={{  marginLeft: "1rem" }}
-        color="primary"
-        aria-label="upload picture"
-        component="label"
-      >
-        <PhotoCamera />
-        <input
-          hidden
-          disabled={index < steps - 1}
-          onChange={handleImg}
-          accept="image/*"
-          type="file"
-        />
-      </IconButton>
-      <span style={{padding:"1rem 0"}}>{uploadStatus}</span>
+      <div style={{ marginTop: "0.5rem", marginLeft: "1rem" }}>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
+        >
+          <PhotoCamera />
+          <input
+            hidden
+            disabled={index < steps - 1}
+            onChange={handleImg}
+            accept="image/*"
+            type="file"
+          />
+        </IconButton>
+      </div>
+      <span style={{ padding: "1rem 0" }}>{uploadStatus}</span>
     </div>
   );
 }

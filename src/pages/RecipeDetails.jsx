@@ -16,7 +16,7 @@ const RecipeDetails = () => {
   const [stepsExpanded, setSteps] = useState([]);
   async function fetchData() {
     try {
-      const data = (await axios.get(url+`recipes/${id}`)).data;
+      const data = (await axios.get(url + `recipes/${id}`)).data;
       setDetail(data[0]);
       setSteps(data[0]?.expanded?.steps);
     } catch (error) {
@@ -29,12 +29,19 @@ const RecipeDetails = () => {
 
   return (
     <>
-    <CssBaseline />
+      <CssBaseline />
       <Container maxWidth="md">
-        <Box sx={{ bgcolor: "#cfe8fc", height: "fit-content", padding: "2rem 1rem",margin:"2rem 0" }}>
-      <Details {...detail} />
-      <Steps steps={stepsExpanded} />
-      </Box>
+        <Box
+          sx={{
+            bgcolor: "#cfe8fc",
+            height: "fit-content",
+            padding: "2rem 1rem 5rem 1rem",
+            margin: "2rem 0",
+          }}
+        >
+          <Details {...detail} />
+          <Steps steps={stepsExpanded} />
+        </Box>
       </Container>
     </>
   );

@@ -24,7 +24,6 @@ export default function ImgMediaCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Link to={"/recipes/"+props.id}>
         <Button size="small">Learn More</Button>
         </Link >  

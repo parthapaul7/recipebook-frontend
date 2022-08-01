@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 
-import "./Details.css";
+import styles from  "./Details.module.css";
 
 const Details = (props) => {
   let time = new Date()
@@ -11,7 +11,7 @@ const Details = (props) => {
   
   return (
     <>
-          <div>
+          <div className={styles.container}>
             <h5>By {props?.author?.name}</h5>
             <h5>Data: {time.toLocaleDateString()}</h5>
             <h1>{props.title}</h1>
